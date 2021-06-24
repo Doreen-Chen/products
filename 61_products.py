@@ -19,3 +19,10 @@ print(products)
 
 # 存取二維清單中指定位置
 print('清單第2項商品的價格', products[1][1])
+
+for p in products:
+    print('您購買的是', p[0], ' ,價格是', p[1])    
+
+
+
+
