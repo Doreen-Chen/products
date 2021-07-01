@@ -4,28 +4,39 @@
 # & 64. 寫入欄位名稱 + 編碼問題
 # & 65. 讀取檔案 + split()
 # & 66. Continue - 跳過欄位名稱
+# & 67. 檢查檔案在不在
 #
 # 讓使用者重複輸入(購買過的)商品名稱, 不清楚購買商品種類,所以使用while loop
 
+import os  # operating system 作業系統
+
 
 products = []
+#67. 檢查檔案在不在
+if os.path.isfile('products.csv'):  #非工作目錄要給絕對路徑
+    print('file exists!')
 
-#####  65. 讀取檔案 + split()
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        # 66. Continue - 跳過欄位名稱
-        if '商品,價格' in line:
-            continue  # 跳過欄位名稱, 下一筆
-        ### 原始寫法
-        #s = line.strip().split(',')  ### split 切割後是清單(s)
-        #name = s[0]
-        #price = s[1]
-        ### 快寫法
-        name, price = line.strip().split(',')
-        #print('商品:' + name + ' 價格:' + price)
-        products.append([name, price])  # 加進list裡
+    ### 將原來在 '讓使用者輸入' while迴圈前的'65. 讀取檔案'移到檢查檔案的If內
 
-print(products)
+    #####  65. 讀取檔案 + split()
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            # 66. Continue - 跳過欄位名稱
+            if '商品,價格' in line:
+                continue  # 跳過欄位名稱, 下一筆
+            ### 原始寫法
+            #s = line.strip().split(',')  ### split 切割後是清單(s)
+            #name = s[0]
+            #price = s[1]
+            ### 快寫法
+            name, price = line.strip().split(',')
+            #print('商品:' + name + ' 價格:' + price)
+            products.append([name, price])  # 加進list裡
+    print(products)
+
+else:
+    print('No such file : products.csv')
+
 
 # 讓使用者輸入
 while True:
